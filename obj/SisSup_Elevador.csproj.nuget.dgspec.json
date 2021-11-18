@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\eder\\SisSup_Elevador\\SisSup_Elevador.csproj": {}
+    "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\chris\\SisSup_Elevador\\SisSup_Elevador.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\eder\\SisSup_Elevador\\SisSup_Elevador.csproj": {
+    "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\chris\\SisSup_Elevador\\SisSup_Elevador.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\eder\\SisSup_Elevador\\SisSup_Elevador.csproj",
+        "projectUniqueName": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\chris\\SisSup_Elevador\\SisSup_Elevador.csproj",
         "projectName": "SisSup_Elevador",
-        "projectPath": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\eder\\SisSup_Elevador\\SisSup_Elevador.csproj",
+        "projectPath": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\chris\\SisSup_Elevador\\SisSup_Elevador.csproj",
         "packagesPath": "C:\\Users\\NOTE-184\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\eder\\SisSup_Elevador\\obj\\",
+        "outputPath": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\chris\\SisSup_Elevador\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NOTE-184\\AppData\\Roaming\\NuGet\\NuGet.Config",

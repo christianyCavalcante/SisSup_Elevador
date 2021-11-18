@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gZvlFVPncdARS7P4Vq1nwL+gdFWfF9foeEg8harC/DzNudNQqXQLFQYTu5gzYabVUnH8FxpaNrnAc17+NZu3sA==",
+  "dgSpecHash": "Uu0Rf1fogcEdKxfeOSDGiS+JGEI6x0qu1dhqGarixVoFTD2fpVXHEhwVqEylOCU9Xmo6YvZUNSrzkeQUpQfuOg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\eder\\SisSup_Elevador\\SisSup_Elevador.csproj",
+  "projectFilePath": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\chris\\SisSup_Elevador\\SisSup_Elevador.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NOTE-184\\.nuget\\packages\\log4net\\2.0.13\\log4net.2.0.13.nupkg.sha512",
     "C:\\Users\\NOTE-184\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",

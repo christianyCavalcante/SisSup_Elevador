@@ -1,30 +1,29 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using log4net;
-using log4net.Config;
 
 namespace SisSup_Elevador
 {
     public partial class frmElevador : Form
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private ElevadorController elevadorController;
 
+
+        public delegate void selecionarAndarDestinoEventHandler(object source, EventArgs args, int andar);
+        public event selecionarAndarDestinoEventHandler selecionarAndarDestinoEvent;
+
         public delegate void chamarElevadorSubirEventHandler(object source, EventArgs args, int andar);
-        public event chamarElevadorSubirEventHandler chamarElevadorSubir;
+        public event chamarElevadorSubirEventHandler chamarElevadorSubirEvent;
 
         public delegate void chamarElevadorDescerEventHandler(object source, EventArgs args, int andar);
-        public event chamarElevadorDescerEventHandler chamarElevadorDescer;
+        public event chamarElevadorDescerEventHandler chamarElevadorDescerEvent;
 
         public frmElevador()
         {
             InitializeComponent();
-
-
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -33,8 +32,11 @@ namespace SisSup_Elevador
             cbModoOperacaoManual.Checked = true;
 
             elevadorController = new ElevadorController(this);
-            this.chamarElevadorSubir += elevadorController.onChamarElevadorSubir;
-            this.chamarElevadorDescer += elevadorController.onChamarElevadorDescer;
+
+            this.selecionarAndarDestinoEvent += elevadorController.onSelecionarAndarDestino;
+            this.chamarElevadorSubirEvent += elevadorController.onChamarElevadorSubir;
+            this.chamarElevadorDescerEvent += elevadorController.onChamarElevadorDescer;
+
 
             Task controller = new Task(elevadorController.processarComandos);
             controller.Start();
@@ -75,86 +77,98 @@ namespace SisSup_Elevador
             }
         }
 
-        private void subir(int andar)
+
+        //Painel Interno. 
+        private void selecionarAndarDestino(int andar)
         {
-            if (chamarElevadorSubir != null)
+            if (selecionarAndarDestinoEvent != null)
             {
-                chamarElevadorSubir(this, EventArgs.Empty, andar);
+                selecionarAndarDestinoEvent(this, EventArgs.Empty, andar);
             }
         }
 
-        private void descer(int andar)
+        //Botões de subir do painel externo
+        private void chamarElevadorSubir(int andar)
         {
-            if (chamarElevadorDescer != null)
+            if (chamarElevadorSubirEvent != null)
             {
-                chamarElevadorDescer(this, EventArgs.Empty, andar);
+                chamarElevadorSubirEvent(this, EventArgs.Empty, andar);
+            }
+        }
+
+        //Botões de descer do painel externo
+        private void chamarElevadorDescer(int andar)
+        {
+            if (chamarElevadorDescerEvent != null)
+            {
+                chamarElevadorDescerEvent(this, EventArgs.Empty, andar);
             }
         }
 
         private void clickTerreoSubir(object sender, EventArgs e)
         {
-            this.subir(0);
+            this.chamarElevadorSubir(0);
         }
 
         private void click1AndarSubir(object sender, EventArgs e)
         {
-
-            this.subir(1);
+            this.chamarElevadorSubir(1);
         }
 
         private void click2AndarSubir(object sender, EventArgs e)
         {
-            this.subir(2);
+            this.chamarElevadorSubir(2);
         }
 
         private void click3AndarSubir(object sender, EventArgs e)
         {
-            this.subir(3);
+            this.chamarElevadorSubir(3);
         }
 
         private void click1AndarDescer(object sender, EventArgs e)
         {
-            this.descer(1);
+            this.chamarElevadorDescer(1);
         }
 
         private void click2AndarDescer(object sender, EventArgs e)
         {
-            this.descer(2);
+            this.chamarElevadorDescer(2);
         }
 
         private void click3AndarDescer(object sender, EventArgs e)
         {
-            this.descer(3);
+            this.chamarElevadorDescer(3);
         }
 
         private void click4AndarDescer(object sender, EventArgs e)
         {
-            this.descer(4);
+            this.chamarElevadorDescer(4);
         }
 
         private void clickTerreo(object sender, EventArgs e)
         {
+            this.selecionarAndarDestino(0);
 
         }
 
         private void click1Andar(object sender, EventArgs e)
         {
-
+            this.selecionarAndarDestino(1);
         }
 
         private void click2Andar(object sender, EventArgs e)
         {
-
+            this.selecionarAndarDestino(2);
         }
 
         private void click3Andar(object sender, EventArgs e)
         {
-
+            this.selecionarAndarDestino(3);
         }
 
         private void click4Andar(object sender, EventArgs e)
         {
-
+            this.selecionarAndarDestino(4);
         }
 
 
