@@ -363,7 +363,6 @@ namespace SisSup_Elevador
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(100, 21);
             this.labelStatus.TabIndex = 5;
-            this.labelStatus.Text = "PARADO";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelAndarAtual

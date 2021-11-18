@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "9VCjiP3/nMSnJsuMixjKYwftckXDuL28r2w/SDMXnOM8lUR9OTs5z36rA9ChQnCSGlheXPXdsGhqtRtJxW108A==",
+  "dgSpecHash": "gZvlFVPncdARS7P4Vq1nwL+gdFWfF9foeEg8harC/DzNudNQqXQLFQYTu5gzYabVUnH8FxpaNrnAc17+NZu3sA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\NOTE-184\\source\\repos\\SisSup_Elevador\\SisSup_Elevador.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\NOTE-184\\Documents\\Projetos\\Pessoal\\elevador\\eder\\SisSup_Elevador\\SisSup_Elevador.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\NOTE-184\\.nuget\\packages\\log4net\\2.0.13\\log4net.2.0.13.nupkg.sha512",
+    "C:\\Users\\NOTE-184\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\NOTE-184\\.nuget\\packages\\system.configuration.configurationmanager\\4.5.0\\system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "C:\\Users\\NOTE-184\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "C:\\Users\\NOTE-184\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.5.0\\system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "C:\\Users\\NOTE-184\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
+    "C:\\Users\\NOTE-184\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
