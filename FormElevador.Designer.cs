@@ -41,18 +41,18 @@ namespace SisSup_Elevador
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button15 = new System.Windows.Forms.Button();
+            this.btTerreoSubir = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button12 = new System.Windows.Forms.Button();
+            this.bt4AndarDescer = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.bt3AndarDescer = new System.Windows.Forms.Button();
+            this.bt3AndarSubir = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.bt2AndarDescer = new System.Windows.Forms.Button();
+            this.bt2AndarSubir = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.bt1AndarDescer = new System.Windows.Forms.Button();
+            this.bt1AndarSubir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.labelAndarAtual = new System.Windows.Forms.Label();
@@ -199,7 +199,7 @@ namespace SisSup_Elevador
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox6.Controls.Add(this.button15);
+            this.groupBox6.Controls.Add(this.btTerreoSubir);
             this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox6.Location = new System.Drawing.Point(13, 53);
             this.groupBox6.Name = "groupBox6";
@@ -208,20 +208,20 @@ namespace SisSup_Elevador
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Térreo";
             // 
-            // button15
+            // btTerreoSubir
             // 
-            this.button15.Image = ((System.Drawing.Image)(resources.GetObject("button15.Image")));
-            this.button15.Location = new System.Drawing.Point(17, 17);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(81, 80);
-            this.button15.TabIndex = 0;
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.clickTerreoSubir);
+            this.btTerreoSubir.Image = ((System.Drawing.Image)(resources.GetObject("btTerreoSubir.Image")));
+            this.btTerreoSubir.Location = new System.Drawing.Point(17, 17);
+            this.btTerreoSubir.Name = "btTerreoSubir";
+            this.btTerreoSubir.Size = new System.Drawing.Size(81, 80);
+            this.btTerreoSubir.TabIndex = 0;
+            this.btTerreoSubir.UseVisualStyleBackColor = true;
+            this.btTerreoSubir.Click += new System.EventHandler(this.clickTerreoSubir);
             // 
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox5.Controls.Add(this.button12);
+            this.groupBox5.Controls.Add(this.bt4AndarDescer);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox5.Location = new System.Drawing.Point(494, 53);
             this.groupBox5.Name = "groupBox5";
@@ -230,22 +230,22 @@ namespace SisSup_Elevador
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "4° Andar";
             // 
-            // button12
+            // bt4AndarDescer
             // 
-            this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button12.Location = new System.Drawing.Point(17, 17);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(81, 80);
-            this.button12.TabIndex = 1;
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.click4AndarDescer);
+            this.bt4AndarDescer.Image = ((System.Drawing.Image)(resources.GetObject("bt4AndarDescer.Image")));
+            this.bt4AndarDescer.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.bt4AndarDescer.Location = new System.Drawing.Point(17, 17);
+            this.bt4AndarDescer.Name = "bt4AndarDescer";
+            this.bt4AndarDescer.Size = new System.Drawing.Size(81, 80);
+            this.bt4AndarDescer.TabIndex = 1;
+            this.bt4AndarDescer.UseVisualStyleBackColor = true;
+            this.bt4AndarDescer.Click += new System.EventHandler(this.click4AndarDescer);
             // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox4.Controls.Add(this.button10);
-            this.groupBox4.Controls.Add(this.button11);
+            this.groupBox4.Controls.Add(this.bt3AndarDescer);
+            this.groupBox4.Controls.Add(this.bt3AndarSubir);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox4.Location = new System.Drawing.Point(374, 53);
             this.groupBox4.Name = "groupBox4";
@@ -254,32 +254,32 @@ namespace SisSup_Elevador
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "3° Andar";
             // 
-            // button10
+            // bt3AndarDescer
             // 
-            this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button10.Location = new System.Drawing.Point(17, 107);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(81, 80);
-            this.button10.TabIndex = 1;
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.click3AndarDescer);
+            this.bt3AndarDescer.Image = ((System.Drawing.Image)(resources.GetObject("bt3AndarDescer.Image")));
+            this.bt3AndarDescer.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.bt3AndarDescer.Location = new System.Drawing.Point(17, 107);
+            this.bt3AndarDescer.Name = "bt3AndarDescer";
+            this.bt3AndarDescer.Size = new System.Drawing.Size(81, 80);
+            this.bt3AndarDescer.TabIndex = 1;
+            this.bt3AndarDescer.UseVisualStyleBackColor = true;
+            this.bt3AndarDescer.Click += new System.EventHandler(this.click3AndarDescer);
             // 
-            // button11
+            // bt3AndarSubir
             // 
-            this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
-            this.button11.Location = new System.Drawing.Point(17, 17);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(81, 80);
-            this.button11.TabIndex = 0;
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.click3AndarSubir);
+            this.bt3AndarSubir.Image = ((System.Drawing.Image)(resources.GetObject("bt3AndarSubir.Image")));
+            this.bt3AndarSubir.Location = new System.Drawing.Point(17, 17);
+            this.bt3AndarSubir.Name = "bt3AndarSubir";
+            this.bt3AndarSubir.Size = new System.Drawing.Size(81, 80);
+            this.bt3AndarSubir.TabIndex = 0;
+            this.bt3AndarSubir.UseVisualStyleBackColor = true;
+            this.bt3AndarSubir.Click += new System.EventHandler(this.click3AndarSubir);
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox3.Controls.Add(this.button8);
-            this.groupBox3.Controls.Add(this.button9);
+            this.groupBox3.Controls.Add(this.bt2AndarDescer);
+            this.groupBox3.Controls.Add(this.bt2AndarSubir);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(254, 53);
             this.groupBox3.Name = "groupBox3";
@@ -288,32 +288,32 @@ namespace SisSup_Elevador
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "2° Andar";
             // 
-            // button8
+            // bt2AndarDescer
             // 
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button8.Location = new System.Drawing.Point(17, 107);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(81, 80);
-            this.button8.TabIndex = 1;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.click2AndarDescer);
+            this.bt2AndarDescer.Image = ((System.Drawing.Image)(resources.GetObject("bt2AndarDescer.Image")));
+            this.bt2AndarDescer.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.bt2AndarDescer.Location = new System.Drawing.Point(17, 107);
+            this.bt2AndarDescer.Name = "bt2AndarDescer";
+            this.bt2AndarDescer.Size = new System.Drawing.Size(81, 80);
+            this.bt2AndarDescer.TabIndex = 1;
+            this.bt2AndarDescer.UseVisualStyleBackColor = true;
+            this.bt2AndarDescer.Click += new System.EventHandler(this.click2AndarDescer);
             // 
-            // button9
+            // bt2AndarSubir
             // 
-            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.Location = new System.Drawing.Point(17, 17);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(81, 80);
-            this.button9.TabIndex = 0;
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.click2AndarSubir);
+            this.bt2AndarSubir.Image = ((System.Drawing.Image)(resources.GetObject("bt2AndarSubir.Image")));
+            this.bt2AndarSubir.Location = new System.Drawing.Point(17, 17);
+            this.bt2AndarSubir.Name = "bt2AndarSubir";
+            this.bt2AndarSubir.Size = new System.Drawing.Size(81, 80);
+            this.bt2AndarSubir.TabIndex = 0;
+            this.bt2AndarSubir.UseVisualStyleBackColor = true;
+            this.bt2AndarSubir.Click += new System.EventHandler(this.click2AndarSubir);
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.bt1AndarDescer);
+            this.groupBox2.Controls.Add(this.bt1AndarSubir);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox2.Location = new System.Drawing.Point(132, 53);
             this.groupBox2.Name = "groupBox2";
@@ -322,26 +322,26 @@ namespace SisSup_Elevador
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "1° Andar";
             // 
-            // button7
+            // bt1AndarDescer
             // 
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button7.Location = new System.Drawing.Point(17, 107);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(81, 80);
-            this.button7.TabIndex = 1;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.click1AndarDescer);
+            this.bt1AndarDescer.Image = ((System.Drawing.Image)(resources.GetObject("bt1AndarDescer.Image")));
+            this.bt1AndarDescer.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.bt1AndarDescer.Location = new System.Drawing.Point(17, 107);
+            this.bt1AndarDescer.Name = "bt1AndarDescer";
+            this.bt1AndarDescer.Size = new System.Drawing.Size(81, 80);
+            this.bt1AndarDescer.TabIndex = 1;
+            this.bt1AndarDescer.UseVisualStyleBackColor = true;
+            this.bt1AndarDescer.Click += new System.EventHandler(this.click1AndarDescer);
             // 
-            // button6
+            // bt1AndarSubir
             // 
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(17, 17);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(81, 80);
-            this.button6.TabIndex = 0;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.click1AndarSubir);
+            this.bt1AndarSubir.Image = ((System.Drawing.Image)(resources.GetObject("bt1AndarSubir.Image")));
+            this.bt1AndarSubir.Location = new System.Drawing.Point(17, 17);
+            this.bt1AndarSubir.Name = "bt1AndarSubir";
+            this.bt1AndarSubir.Size = new System.Drawing.Size(81, 80);
+            this.bt1AndarSubir.TabIndex = 0;
+            this.bt1AndarSubir.UseVisualStyleBackColor = true;
+            this.bt1AndarSubir.Click += new System.EventHandler(this.click1AndarSubir);
             // 
             // label1
             // 
@@ -420,18 +420,18 @@ namespace SisSup_Elevador
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button bt4AndarDescer;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button bt3AndarDescer;
+        private System.Windows.Forms.Button bt3AndarSubir;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button bt2AndarDescer;
+        private System.Windows.Forms.Button bt2AndarSubir;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button bt1AndarDescer;
+        private System.Windows.Forms.Button bt1AndarSubir;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button btTerreoSubir;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.Label labelAndarAtual;
     }

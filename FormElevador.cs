@@ -1,5 +1,8 @@
-﻿using System;
+﻿using log4net;
+using log4net.Config;
+using System;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -7,10 +10,14 @@ namespace SisSup_Elevador
 {
     public partial class frmElevador : Form
     {
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
 
         private ElevadorController elevadorController;
 
+        private Simulador simulador;
+        private Task simuladorTask;        
+
+        private CancellationTokenSource simuladorCancellationToken;
 
         public delegate void selecionarAndarDestinoEventHandler(object source, EventArgs args, int andar);
         public event selecionarAndarDestinoEventHandler selecionarAndarDestinoEvent;
@@ -27,9 +34,10 @@ namespace SisSup_Elevador
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            Logger.Setup();
+            Logger.log("ELEVADOR INICIADO.");
 
-            //            BasicConfigurator.Configure();
-            cbModoOperacaoManual.Checked = true;
+            cbModoOperacaoManual.CheckState = CheckState.Checked;
 
             elevadorController = new ElevadorController(this);
 
@@ -38,8 +46,11 @@ namespace SisSup_Elevador
             this.chamarElevadorDescerEvent += elevadorController.onChamarElevadorDescer;
 
 
-            Task controller = new Task(elevadorController.processarComandos);
-            controller.Start();
+            Task controllerTask = new Task(elevadorController.processarComandos);
+            controllerTask.Start();
+
+            simulador = new Simulador(this.elevadorController);
+
         }
 
         public void onAlterarStatusElevadorEventHandler(object source, EventArgs args, String status)
@@ -58,11 +69,14 @@ namespace SisSup_Elevador
             if (cbModoOperacaoManual.CheckState == CheckState.Checked && cbModoOperacaoAutomatico.CheckState == CheckState.Checked)
             {
                 cbModoOperacaoAutomatico.CheckState = CheckState.Unchecked;
+                this.habilitarModoAutomatico(false);
             }
             if (cbModoOperacaoManual.CheckState == CheckState.Unchecked && cbModoOperacaoAutomatico.CheckState == CheckState.Unchecked)
             {
                 cbModoOperacaoAutomatico.CheckState = CheckState.Checked;
+                this.habilitarModoAutomatico(true);
             }
+            
         }
 
         private void cbModoOperacaoAutomatico_CheckedChanged(object sender, EventArgs e)
@@ -70,11 +84,41 @@ namespace SisSup_Elevador
             if (cbModoOperacaoAutomatico.CheckState == CheckState.Checked && cbModoOperacaoManual.CheckState == CheckState.Checked)
             {
                 cbModoOperacaoManual.CheckState = CheckState.Unchecked;
+                this.habilitarModoAutomatico(true);
             }
             if (cbModoOperacaoAutomatico.CheckState == CheckState.Unchecked && cbModoOperacaoManual.CheckState == CheckState.Unchecked)
             {
                 cbModoOperacaoManual.CheckState = CheckState.Checked;
+                this.habilitarModoAutomatico(false);
+            }   
+
+        }
+
+        private void habilitarModoAutomatico(bool habilitar)
+        {
+            if (habilitar)
+            {
+                this.simuladorCancellationToken = new CancellationTokenSource();                
+                this.simuladorTask = new Task(()=>simulador.simularChamadas(this.simuladorCancellationToken.Token));
+                this.simuladorTask.Start();
+
             }
+            else
+            {
+                if (this.simuladorCancellationToken.Token.CanBeCanceled)
+                {
+                    this.simuladorCancellationToken.Cancel();
+                }
+            }
+            btTerreoSubir.Enabled = !habilitar;
+            bt1AndarSubir.Enabled = !habilitar;
+            bt2AndarSubir.Enabled = !habilitar;
+            bt3AndarSubir.Enabled = !habilitar;
+            bt1AndarDescer.Enabled = !habilitar;
+            bt2AndarDescer.Enabled = !habilitar;
+            bt3AndarDescer.Enabled = !habilitar;
+            bt4AndarDescer.Enabled = !habilitar;
+            
         }
 
 
@@ -84,6 +128,7 @@ namespace SisSup_Elevador
             if (selecionarAndarDestinoEvent != null)
             {
                 selecionarAndarDestinoEvent(this, EventArgs.Empty, andar);
+                Logger.log("ANDAR SELECIONADO = " + andar);
             }
         }
 

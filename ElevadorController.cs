@@ -34,8 +34,7 @@ namespace SisSup_Elevador
 
 
 		public void onSelecionarAndarDestino(object source, EventArgs args, int andar)
-		{
-			Debug.WriteLine("ANDAR SELECIONADO = " + andar);
+		{			
 			if(andar > this.andarAtual)
             {
 				this.onChamarElevadorSubir(source, args, andar);
@@ -63,7 +62,6 @@ namespace SisSup_Elevador
 
 		private void alterarStatusElevador(String status)
         {
-			Debug.WriteLine("STATUS ATUAL = " + status);
 			this.statusElevador = status;
 			if(alterarStatusElevadorEvent!= null)
             {
@@ -72,8 +70,7 @@ namespace SisSup_Elevador
         }
 
 		private void alterarAndarAtual(int andar)
-		{
-			Debug.WriteLine("ANDAR ATUAL = "+ andar);
+		{			
 			this.andarAtual = andar;
 			if (alterarAndarAtualEvent != null)
 			{
@@ -108,7 +105,7 @@ namespace SisSup_Elevador
                         }
 						
 					}
-					//elevadir irá descer
+					//elevador irá descer
                     else if(chamadaElevador.Andar < this.andarAtual)
 					{
 						this.alterarStatusElevador("DESCENDO");
