@@ -98,6 +98,8 @@ namespace SisSup_Elevador
         {
             if (habilitar)
             {
+                Logger.log("MODO DE OPERAÇÃO AUTOMÁTICO.");
+
                 this.simuladorCancellationToken = new CancellationTokenSource();                
                 this.simuladorTask = new Task(()=>simulador.simularChamadas(this.simuladorCancellationToken.Token));
                 this.simuladorTask.Start();
@@ -105,6 +107,8 @@ namespace SisSup_Elevador
             }
             else
             {
+                Logger.log("MODO DE OPERAÇÃO MANUAL.");
+
                 if (this.simuladorCancellationToken.Token.CanBeCanceled)
                 {
                     this.simuladorCancellationToken.Cancel();
@@ -126,9 +130,8 @@ namespace SisSup_Elevador
         private void selecionarAndarDestino(int andar)
         {
             if (selecionarAndarDestinoEvent != null)
-            {
-                selecionarAndarDestinoEvent(this, EventArgs.Empty, andar);
-                Logger.log("ANDAR SELECIONADO = " + andar);
+            {                
+                selecionarAndarDestinoEvent(this, EventArgs.Empty, andar);                
             }
         }
 
@@ -136,7 +139,7 @@ namespace SisSup_Elevador
         private void chamarElevadorSubir(int andar)
         {
             if (chamarElevadorSubirEvent != null)
-            {
+            {                
                 chamarElevadorSubirEvent(this, EventArgs.Empty, andar);
             }
         }
@@ -145,7 +148,7 @@ namespace SisSup_Elevador
         private void chamarElevadorDescer(int andar)
         {
             if (chamarElevadorDescerEvent != null)
-            {
+            {                
                 chamarElevadorDescerEvent(this, EventArgs.Empty, andar);
             }
         }

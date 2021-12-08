@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Linq;
 
 
 namespace SisSup_Elevador
 {
     public class ElevadorController
 	{
-		//private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-		private static readonly int TEMPO_ELEVADOR_ENTRE_ANDARES = 2000;		
+		private static readonly int TEMPO_ELEVADOR_ENTRE_ANDARES_EM_MOVIMENTO = 2000;
+		private static readonly int TEMPO_ELEVADOR_ENTRE_ANDARES_PARADO = 5000;
 
 		private int andarAtual;
 		private String statusElevador;
@@ -34,27 +35,31 @@ namespace SisSup_Elevador
 
 
 		public void onSelecionarAndarDestino(object source, EventArgs args, int andar)
-		{			
-			if(andar > this.andarAtual)
+		{
+			Logger.log("ANDAR SELECIONADO = " + andar);
+
+			if (andar > this.andarAtual)
             {
-				this.onChamarElevadorSubir(source, args, andar);
-            }	
+				filaChamadas.Enqueue(new ChamadaElevador(andar, "SUBIR"));
+			}	
 			else if (andar < this.andarAtual)
             {
-				this.onChamarElevadorDescer(source, args, andar);
+				filaChamadas.Enqueue(new ChamadaElevador(andar, "DESCER"));
 			}
 
 		}
 
 
 		public void onChamarElevadorSubir(object source, EventArgs args, int andar)
-		{			
+		{
+			Logger.log("ELEVADOR CHAMADO = " + andar + "ANDAR - SUBIR.");
 			filaChamadas.Enqueue(new ChamadaElevador(andar,"SUBIR"));
 		}
 
 
 		public void onChamarElevadorDescer(object source, EventArgs args, int andar)
-        {						
+        {
+			Logger.log("ELEVADOR CHAMADO = " + andar + "ANDAR - DESCER.");
 			filaChamadas.Enqueue(new ChamadaElevador(andar, "DESCER"));
 		}
 
@@ -88,19 +93,38 @@ namespace SisSup_Elevador
             {			
 
 				if (this.filaChamadas.Count > 0)
-                {
-
+                {					
 					//pego a proxima chamada na fila
 					var chamadaElevador = this.filaChamadas.Dequeue();					
 					
+
 					//o elevador irá subir
 					if (chamadaElevador.Andar > this.andarAtual)
                     {
+						//subir os andares até o próximo andar da fila de chamadas
 						this.alterarStatusElevador("SUBINDO");
-						for(int i = this.andarAtual; i<= chamadaElevador.Andar; i++)
-                        {							
-							this.alterarAndarAtual(i);
-							Thread.Sleep(TEMPO_ELEVADOR_ENTRE_ANDARES);
+						for (int i = this.andarAtual; i <= chamadaElevador.Andar; i++)
+						{
+							this.alterarAndarAtual(i);	
+
+							//Verificar se on andar que está passando chamou também o elevador para subir
+							if (this.filaChamadas.Where(x => x.Andar == i && x.Direcao == "SUBIR").Count() > 0)
+                            {
+								//parar o elevador
+								this.alterarStatusElevador("PARADO");
+								Thread.Sleep(TEMPO_ELEVADOR_ENTRE_ANDARES_PARADO);
+
+								//remover a chamada da fila
+								this.filaChamadas = new Queue<ChamadaElevador>(this.filaChamadas.Where(x => x.Andar != i || x.Direcao != "SUBIR"));
+
+								//voltar a subir o elevador
+								this.alterarStatusElevador("SUBINDO");
+                            }
+                            else
+                            {
+								Thread.Sleep(TEMPO_ELEVADOR_ENTRE_ANDARES_EM_MOVIMENTO);
+							}
+							
 							
                         }
 						
@@ -108,18 +132,36 @@ namespace SisSup_Elevador
 					//elevador irá descer
                     else if(chamadaElevador.Andar < this.andarAtual)
 					{
+						//descer os andares até o próximo andar da fila de chamadas
 						this.alterarStatusElevador("DESCENDO");
 						for (int i = this.andarAtual; i >= chamadaElevador.Andar; i--)
 						{
 							this.alterarAndarAtual(i);
-							Thread.Sleep(TEMPO_ELEVADOR_ENTRE_ANDARES);
-							
-							
+
+							//Verificar se on andar que está passando chamou também o elevador para descer
+							if (this.filaChamadas.Where(x => x.Andar == i && x.Direcao == "DESCER").Count() > 0)
+							{								
+								//parar o elevador
+								this.alterarStatusElevador("PARADO");
+								Thread.Sleep(TEMPO_ELEVADOR_ENTRE_ANDARES_PARADO);
+
+								//remover a chamada da fila
+								this.filaChamadas = new Queue<ChamadaElevador>(this.filaChamadas.Where(x => x.Andar != i || x.Direcao != "DESCER"));
+
+								//voltar a descer o elevador
+								this.alterarStatusElevador("DESCENDO");
+							}
+							else
+							{
+								Thread.Sleep(TEMPO_ELEVADOR_ENTRE_ANDARES_EM_MOVIMENTO);
+							}
+
+
 						}
 					}					
 
 					this.alterarStatusElevador("PARADO");
-					
+					Thread.Sleep(TEMPO_ELEVADOR_ENTRE_ANDARES_PARADO);
 				}
 
 				
@@ -142,13 +184,13 @@ namespace SisSup_Elevador
 
         public int Andar { get => andar; set => andar = value; }
         public string Direcao { get => direcao; set => direcao = value; }
-
+		
         public override string ToString()
         {
 			return this.andar + " - " + this.direcao;
 
 		}
-    }
+	}
 
 }
 

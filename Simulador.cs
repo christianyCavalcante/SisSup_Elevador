@@ -11,16 +11,20 @@ namespace SisSup_Elevador
     {
         private ElevadorController elevadorController;
 
-        private static readonly int INTEVALOR_PARA_GERAR_CHAMADAS = 10000;
+        //CONSTANTE DE TEMPO ENTRE AS CHAMADAS DO SIMULADOR
+        private const int INTEVALO_PARA_GERAR_CHAMADAS = 10000;
+
 
         private const int DESCER = 0;
         private const int SUBIR = 1;
 
+        //EVENTOS PARA COMUNICAR AO CONTROLER AS CHAMADAS DO SIMULADOR
         public delegate void chamarElevadorSubirEventHandler(object source, EventArgs args, int andar);
         public event chamarElevadorSubirEventHandler chamarElevadorSubirEvent;
 
         public delegate void chamarElevadorDescerEventHandler(object source, EventArgs args, int andar);
         public event chamarElevadorDescerEventHandler chamarElevadorDescerEvent;
+
 
         public Simulador(ElevadorController elevadorController)
         {
@@ -31,15 +35,12 @@ namespace SisSup_Elevador
 
         }
 
+        //PROCESSO QUE FICA GERANDO CHAMADAS PSEUDO ALEATORIOAS
         public void simularChamadas(CancellationToken simuladorCancellationToken)
-        {
-            Logger.log("simulador iniciado");
+        {            
             Random randNum = new Random();
             while (!simuladorCancellationToken.IsCancellationRequested)
-            {
-                Thread.Sleep(INTEVALOR_PARA_GERAR_CHAMADAS);
-                
-                
+            {   
                 switch (randNum.Next(0, 2))
                 {
                     case DESCER:
@@ -57,8 +58,8 @@ namespace SisSup_Elevador
                         }
                         break;
                 }
-            }
-            Logger.log("simulador terminado");
+                Thread.Sleep(INTEVALO_PARA_GERAR_CHAMADAS);
+            }            
 
         }
     }
