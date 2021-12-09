@@ -8,17 +8,18 @@ using System.Linq;
 
 namespace SisSup_Elevador
 {
+	//classe que controla o comportamento do elevador
     public class ElevadorController
 	{
-
-		private static readonly int TEMPO_ELEVADOR_ENTRE_ANDARES_EM_MOVIMENTO = 2000;
-		private static readonly int TEMPO_ELEVADOR_ENTRE_ANDARES_PARADO = 5000;
+		//constates de tempo em que o elevador irá ficar parado
+		private const int TEMPO_ELEVADOR_ENTRE_ANDARES_EM_MOVIMENTO = 2000;
+		private const int TEMPO_ELEVADOR_ENTRE_ANDARES_PARADO = 5000;
 
 		private int andarAtual;
 		private String statusElevador;
 		private Queue<ChamadaElevador> filaChamadas;
 		
-
+		//eventos que irão interagir com a tela do elevador
 		public delegate void alterarStatusElevadorEventHandler(object source, EventArgs args, String status);
 		public event alterarStatusElevadorEventHandler alterarStatusElevadorEvent;
 
@@ -27,6 +28,7 @@ namespace SisSup_Elevador
 
 		public ElevadorController(frmElevador frmElevador)
 		{
+			//instancia uma fila de chamadas que o elevador percorrer 
 			this.filaChamadas = new Queue<ChamadaElevador>();
 
 			this.alterarStatusElevadorEvent += frmElevador.onAlterarStatusElevadorEventHandler;
@@ -34,6 +36,8 @@ namespace SisSup_Elevador
 		}
 
 
+		//quando no painel interno é selecionado um andar, é colocado na fila de chamadas do elevador.
+		//se o andar escolhido for maior que atual, é registrado que o elevador deverá subir, caso contrário, descer.
 		public void onSelecionarAndarDestino(object source, EventArgs args, int andar)
 		{
 			Logger.log("ANDAR SELECIONADO = " + andar);
@@ -49,14 +53,14 @@ namespace SisSup_Elevador
 
 		}
 
-
+		//quando um botão de subir é pressionado no painel externo, coloca uma nova chamada na fila
 		public void onChamarElevadorSubir(object source, EventArgs args, int andar)
 		{
 			Logger.log("ELEVADOR CHAMADO = " + andar + "ANDAR - SUBIR.");
 			filaChamadas.Enqueue(new ChamadaElevador(andar,"SUBIR"));
 		}
 
-
+		//quando um botão de descer é pressionado no painel externo, coloca uma nova chamada na fila
 		public void onChamarElevadorDescer(object source, EventArgs args, int andar)
         {
 			Logger.log("ELEVADOR CHAMADO = " + andar + "ANDAR - DESCER.");
@@ -64,7 +68,7 @@ namespace SisSup_Elevador
 		}
 
 		
-
+		//envia um evento para a tela, alterando o status do elevador (SUBINDO ou DESCENDO)
 		private void alterarStatusElevador(String status)
         {
 			this.statusElevador = status;
@@ -74,6 +78,7 @@ namespace SisSup_Elevador
 			}
         }
 
+		//envia um evento para a tela, alterando o andar atual do elevador
 		private void alterarAndarAtual(int andar)
 		{			
 			this.andarAtual = andar;
@@ -83,22 +88,23 @@ namespace SisSup_Elevador
 			}
 		}
 
-
+		//método principal que irá ficar processando a lógica do elevador, enquanto ele estiver ligado.
 		public void processarComandos()
 		{
+			//inicio o elevador no terréo e parado
 			this.alterarStatusElevador("PARADO");
 			this.alterarAndarAtual(0);
 			
             while (true)
             {			
-
+				//se existe chamada na fila para ser processado
 				if (this.filaChamadas.Count > 0)
                 {					
 					//pego a proxima chamada na fila
 					var chamadaElevador = this.filaChamadas.Dequeue();					
 					
 
-					//o elevador irá subir
+					//se o andar da fila for maior que o andar atual, o elevador irá subir
 					if (chamadaElevador.Andar > this.andarAtual)
                     {
 						//subir os andares até o próximo andar da fila de chamadas
@@ -107,7 +113,7 @@ namespace SisSup_Elevador
 						{
 							this.alterarAndarAtual(i);	
 
-							//Verificar se on andar que está passando chamou também o elevador para subir
+							//enquanto estiver subindo, Verificar se o andar que está passando chamou também o elevador para subir
 							if (this.filaChamadas.Where(x => x.Andar == i && x.Direcao == "SUBIR").Count() > 0)
                             {
 								//parar o elevador
@@ -129,8 +135,8 @@ namespace SisSup_Elevador
                         }
 						
 					}
-					//elevador irá descer
-                    else if(chamadaElevador.Andar < this.andarAtual)
+					//se o andar da fila for menor que o andar atual, elevador irá descer
+					else if (chamadaElevador.Andar < this.andarAtual)
 					{
 						//descer os andares até o próximo andar da fila de chamadas
 						this.alterarStatusElevador("DESCENDO");
@@ -138,7 +144,7 @@ namespace SisSup_Elevador
 						{
 							this.alterarAndarAtual(i);
 
-							//Verificar se on andar que está passando chamou também o elevador para descer
+							//equanto estiver descendo, Verificar se o andar que está passando chamou também o elevador para descer
 							if (this.filaChamadas.Where(x => x.Andar == i && x.Direcao == "DESCER").Count() > 0)
 							{								
 								//parar o elevador
@@ -171,6 +177,7 @@ namespace SisSup_Elevador
 
 	}
 
+	//classe que modela uma chamada de elevador
 	class ChamadaElevador
     {
         private int andar;

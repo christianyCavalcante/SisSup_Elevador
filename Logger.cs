@@ -13,10 +13,13 @@ using System.Threading.Tasks;
 
 namespace SisSup_Elevador
 {
+    //classe para gerenciar os LOGs do sistema
     public static class Logger
     {
+        //inicializo a classe ILog do log4net
         private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //seto configurações iniciais
         public static void Setup()
         {
             Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
@@ -46,6 +49,8 @@ namespace SisSup_Elevador
             BasicConfigurator.Configure(hierarchy);
         }
 
+        //método que é chamado no restante do sistema para registrar o log
+        //escreve tanto no arquivo de log, quanto no console de saída de depuração
         public static void log(String mensagem)
         {
             Debug.WriteLine(mensagem);
